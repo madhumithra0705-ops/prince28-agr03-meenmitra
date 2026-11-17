@@ -1,0 +1,47 @@
+[
+  {
+    "id": "001",
+    "species_scientific": "Cephalopholis sonnerati",
+    "local_name_tamil": "thakkali kalava / sivappu kalava",
+    "english_name": "Tomato hind",
+    "topic": "Fishery and biology",
+    "region": "Kasimedu Fisheries Harbour, Chennai",
+    "regulation": null
+  },
+  {
+    "id": "002",
+    "species_scientific": "Sphyraena barracuda",
+    "local_name_tamil": null,
+    "english_name": "Great barracuda",
+    "topic": "Reef-associated fish in hook-and-line fishery",
+    "region": "Mandapam, Gulf of Mannar, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "003",
+    "species_scientific": "Caranx heberi",
+    "local_name_tamil": null,
+    "english_name": "Blacktip trevally",
+    "topic": "Reef-associated fish in hook-and-line fishery",
+    "region": "Mandapam, Gulf of Mannar, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "004",
+    "species_scientific": "Rastrelliger kanagurta",
+    "local_name_tamil": "Kumla / Kanangeluthi",
+    "english_name": "Indian mackerel",
+    "topic": "Species identification and nomenclature",
+    "region": null,
+    "regulation": null
+  },
+  {
+    "id": "005",
+    "species_scientific": "Sardinella longiceps",
+    "local_name_tamil": "Pechalai",
+    "english_name": "Indian oil sardine",
+    "topic": "Fishery biology and local naming",
+    "region": "Tuticorin coast, Tamil Nadu",
+    "regulation": null
+  }
+]
