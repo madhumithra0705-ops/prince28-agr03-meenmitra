@@ -1,0 +1,23 @@
+
+[
+  {
+    "id": "001",
+    "category": "fish",
+    "local_name": "Vanjiram",
+    "scientific_name": "Scomberomorus commerson",
+    "description": "Commonly known as narrow-barred Spanish mackerel."
+  },
+  {
+    "id": "002",
+    "category": "fish",
+    "local_name": "Sankara",
+    "scientific_name": "Lutjanus",
+    "description": "A group of marine fish commonly known as snappers."
+  },
+  {
+    "id": "003",
+    "category": "fishing_rules",
+    "topic": "Fishing ban",
+    "description": "Fishing ban periods depend on the maritime state, region and applicable government notification. Check the latest official notification before fishing."
+  }
+]
