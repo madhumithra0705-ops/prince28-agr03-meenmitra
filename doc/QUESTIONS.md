@@ -12,7 +12,7 @@ These 10 questions become my first evaluation set in Week 3. Question 6 is not a
 | 4 | I own a mechanised trawler in Rameswaram. What gear and mesh rules apply to me, which schemes can help me buy safety equipment, and what does CMFRI say about the stock of the main fish I catch? | multi-step (several pages) | TODO: document, page | Yes |
 | 5 | Compare PMMSY support for boat owners and for fish farmers. | comparison | TODO: document, page | Yes |
 | 6 | Will there be good catch near Dhanushkodi tomorrow? | unanswerable: must reply "I don't know" | none: not in any document | - |
-| 7 | TODO: write a real question your user would type | | TODO | |
-| 8 | TODO: write a real question your user would type | | TODO | |
-| 9 | TODO: write a real question your user would type | | TODO | |
-| 10 | TODO: write a real question your user would type | | TODO | |
+| 7 | What is the Tamil name of Indian oil sardine and when is its fishing season? | simple | TODO: document, page | No |
+| 8 | What is the minimum legal size for catching pomfret, and is there a penalty if I land smaller fish? | simple | TODO: document, page | Yes |
+| 9 | My boat has a 9 m length and a 120 HP engine. Does it need a licence, and what are the mesh size rules for that class? | multi-step (several pages) | TODO: document, page | Yes |
+| 10 | What was the price of sardines at Rameswaram market yesterday? | unanswerable: must reply "I don't know" | none: not in any document | - |
