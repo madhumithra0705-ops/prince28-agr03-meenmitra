@@ -4,9 +4,10 @@
     "species_scientific": "Cephalopholis sonnerati",
     "local_name_tamil": "thakkali kalava / sivappu kalava",
     "english_name": "Tomato hind",
-    "topic": "Fishery and biology",
+    "topic": "Fishery and biology (updated)",
     "region": "Kasimedu Fisheries Harbour, Chennai",
-    "regulation": null
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/19290/"
   },
   {
     "id": "002",
@@ -15,7 +16,8 @@
     "english_name": "Great barracuda",
     "topic": "Reef-associated fish in hook-and-line fishery",
     "region": "Mandapam, Gulf of Mannar, Tamil Nadu",
-    "regulation": null
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/13824/"
   },
   {
     "id": "003",
@@ -24,7 +26,8 @@
     "english_name": "Blacktip trevally",
     "topic": "Reef-associated fish in hook-and-line fishery",
     "region": "Mandapam, Gulf of Mannar, Tamil Nadu",
-    "regulation": null
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/13824/"
   },
   {
     "id": "004",
@@ -33,7 +36,8 @@
     "english_name": "Indian mackerel",
     "topic": "Species identification and nomenclature",
     "region": null,
-    "regulation": null
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/2232/"
   },
   {
     "id": "005",
@@ -42,6 +46,157 @@
     "english_name": "Indian oil sardine",
     "topic": "Fishery biology and local naming",
     "region": "Tuticorin coast, Tamil Nadu",
-    "regulation": null
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/4228/"
+  },
+  {
+    "id": "006",
+    "species_scientific": "Cynoglossus arel",
+    "local_name_tamil": null,
+    "english_name": "Largescale tonguesole",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/14439/"
+  },
+  {
+    "id": "007",
+    "species_scientific": "Lutjanus ehrenbergii",
+    "local_name_tamil": null,
+    "english_name": "Ehrenberg's snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/10241/1/87_Rekha_J_Nair.pdf"
+  },
+  {
+    "id": "008",
+    "species_scientific": "Lutjanus fulviflamma",
+    "local_name_tamil": null,
+    "english_name": "Dory snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/15685/1/Lakshadweep%20Fisher%27s%20Handbook_2022_CMFRI%20Sp.%20Pub.%20No.136.pdf"
+  },
+  {
+    "id": "009",
+    "species_scientific": "Lutjanus fulvus",
+    "local_name_tamil": null,
+    "english_name": "Blacktail snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/10241/1/87_Rekha_J_Nair.pdf"
+  },
+  {
+    "id": "010",
+    "species_scientific": "Lutjanus lutjanus",
+    "local_name_tamil": null,
+    "english_name": "Bigeye snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/10241/1/87_Rekha_J_Nair.pdf"
+  },
+  {
+    "id": "011",
+    "species_scientific": "Lutjanus quinquelineatus",
+    "local_name_tamil": null,
+    "english_name": "Five-lined snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/10241/1/87_Rekha_J_Nair.pdf"
+  },
+  {
+    "id": "012",
+    "species_scientific": "Psettodes erumei",
+    "local_name_tamil": null,
+    "english_name": "Indian halibut",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
+  },
+  {
+    "id": "013",
+    "species_scientific": "Saurida micropectoralis",
+    "local_name_tamil": null,
+    "english_name": "Shortfin lizardfish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
+  },
+  {
+    "id": "014",
+    "species_scientific": "Selar crumenophthalmus",
+    "local_name_tamil": null,
+    "english_name": "Bigeye scad",
+    "topic": "Fishery biology and species identification",
+    "region": "Tuticorin, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
+  },
+  {
+    "id": "015",
+    "species_scientific": "Sillago sihama",
+    "local_name_tamil": null,
+    "english_name": "Indian sand whiting",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/14996/"
+  },
+  {
+    "id": "016",
+    "species_scientific": "Sphyraena forsteri",
+    "local_name_tamil": null,
+    "english_name": "Bigeye barracuda",
+    "topic": "Fishery biology and species identification",
+    "region": "Tuticorin, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
+  },
+  {
+    "id": "017",
+    "species_scientific": "Trichiurus lepturus",
+    "local_name_tamil": null,
+    "english_name": "Largehead hairtail",
+    "topic": "Fishery biology and species identification",
+    "region": "Tuticorin, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
+  },
+  {
+    "id": "018",
+    "species_scientific": "Tripterodon orbis",
+    "local_name_tamil": null,
+    "english_name": "African spadefish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
+  },
+  {
+    "id": "019",
+    "species_scientific": "Upeneus margarethae",
+    "local_name_tamil": null,
+    "english_name": "Margaretha's goatfish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
+  },
+  {
+    "id": "020",
+    "species_scientific": "Upeneus sulphureus",
+    "local_name_tamil": null,
+    "english_name": "Sulphur goatfish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null,
+    "source_url": "https://eprints.cmfri.org.in/17732/1/CMFRI%20Annual%20Report_2022.pdf"
   }
 ]
