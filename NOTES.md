@@ -111,3 +111,12 @@ Command:
 uv run alembic upgrade head
 
 The API returns the `sha256` field and supports filtering documents by SHA-256.
+### 4. SHA-256 column verification
+
+**Migration**
+
+Command:
+```text
+uv run alembic upgrade head
+
+The API returns the sha256 field and supports filtering documents by SHA-256.
