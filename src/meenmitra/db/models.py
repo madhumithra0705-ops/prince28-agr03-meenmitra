@@ -38,6 +38,8 @@ class Document(Base):
     region: Mapped[str | None] = mapped_column(String(255))
     regulation: Mapped[str | None] = mapped_column(Text)
 
+    source_url: Mapped[str | None] = mapped_column(Text)
+
     doc_type: Mapped[str | None] = mapped_column(String(100))
 
     document_metadata: Mapped[dict | None] = mapped_column(

@@ -28,3 +28,7 @@ uv run alembic history
 Result:
 a009a85f761c -> c32d6f697003 (head), add gin index on metadata
 <base> -> a009a85f761c, create documents and pages
+
+records=20 inserted=20 updated=0 unchanged=0
+records=20 inserted=0 updated=0 unchanged=20
+records=20 inserted=0 updated=1 unchanged=19
