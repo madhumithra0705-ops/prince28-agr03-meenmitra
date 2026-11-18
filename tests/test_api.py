@@ -99,3 +99,20 @@ def test_app_refuses_to_start_without_required_settings(monkeypatch, missing):
 )
 def test_database_url_is_converted_for_asyncpg(raw, expected):
     assert to_asyncpg_url(raw) == expected
+
+
+def test_get_document_returns_sha256(client):
+    response = client.get("/v1/documents/001")
+
+    assert response.status_code == 200
+    assert response.json()["sha256"] == "a" * 64
+
+
+def test_filter_documents_by_sha256(client):
+    response = client.get(
+        "/v1/documents",
+        params={"sha256": "b" * 64},
+    )
+
+    assert response.status_code == 200
+    assert [item["id"] for item in response.json()["items"]] == ["002"]

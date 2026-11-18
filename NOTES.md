@@ -102,3 +102,12 @@ Using an index would add extra lookup overhead for this small table.
 **When would it switch to GIN index?**
 
 For a larger table and a selective JSONB filter, PostgreSQL may choose the GIN index when its estimated cost is lower.
+### 4. SHA-256 column verification
+
+**Migration**
+
+Command:
+```text
+uv run alembic upgrade head
+
+The API returns the `sha256` field and supports filtering documents by SHA-256.

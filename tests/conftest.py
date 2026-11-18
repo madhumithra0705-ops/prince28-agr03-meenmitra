@@ -15,6 +15,7 @@ SAMPLE = [
         "doc_type": "guideline",
         "kind": "guideline",
         "year": 2023,
+        "sha256": "a" * 64,
     },
     {
         "id": "002",
@@ -25,6 +26,7 @@ SAMPLE = [
         "doc_type": "circular",
         "kind": "circular",
         "year": 2024,
+        "sha256": "b" * 64,
     },
     {
         "id": "003",
@@ -35,6 +37,7 @@ SAMPLE = [
         "doc_type": "notice",
         "kind": "circular",
         "year": 2025,
+        "sha256": "c" * 64,
     },
 ]
 
