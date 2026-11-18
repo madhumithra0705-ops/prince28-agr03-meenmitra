@@ -1,3 +1,4 @@
+
 [
   {
     "id": "001",
@@ -42,6 +43,141 @@
     "english_name": "Indian oil sardine",
     "topic": "Fishery biology and local naming",
     "region": "Tuticorin coast, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "006",
+    "species_scientific": "Cynoglossus arel",
+    "local_name_tamil": null,
+    "english_name": "Largescale tonguesole",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "007",
+    "species_scientific": "Lutjanus ehrenbergii",
+    "local_name_tamil": null,
+    "english_name": "Ehrenberg's snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "008",
+    "species_scientific": "Lutjanus fulviflamma",
+    "local_name_tamil": null,
+    "english_name": "Dory snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "009",
+    "species_scientific": "Lutjanus fulvus",
+    "local_name_tamil": null,
+    "english_name": "Blacktail snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "010",
+    "species_scientific": "Lutjanus lutjanus",
+    "local_name_tamil": null,
+    "english_name": "Bigeye snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "011",
+    "species_scientific": "Lutjanus quinquelineatus",
+    "local_name_tamil": null,
+    "english_name": "Five-lined snapper",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "012",
+    "species_scientific": "Psettodes erumei",
+    "local_name_tamil": null,
+    "english_name": "Indian halibut",
+    "topic": "Fishery biology and species identification",
+    "region": "Chennai, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "013",
+    "species_scientific": "Saurida micropectoralis",
+    "local_name_tamil": null,
+    "english_name": "Shortfin lizardfish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "014",
+    "species_scientific": "Selar crumenophthalmus",
+    "local_name_tamil": null,
+    "english_name": "Bigeye scad",
+    "topic": "Fishery biology and species identification",
+    "region": "Tuticorin, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "015",
+    "species_scientific": "Sillago sihama",
+    "local_name_tamil": null,
+    "english_name": "Silver sillago",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "016",
+    "species_scientific": "Sphyraena forsteri",
+    "local_name_tamil": null,
+    "english_name": "Bigeye barracuda",
+    "topic": "Fishery biology and species identification",
+    "region": "Tuticorin, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "017",
+    "species_scientific": "Trichiurus lepturus",
+    "local_name_tamil": null,
+    "english_name": "Largehead hairtail",
+    "topic": "Fishery biology and species identification",
+    "region": "Tuticorin, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "018",
+    "species_scientific": "Tripterodon orbis",
+    "local_name_tamil": null,
+    "english_name": "African spadefish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "019",
+    "species_scientific": "Upeneus margarethae",
+    "local_name_tamil": null,
+    "english_name": "Margaretha's goatfish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
+    "regulation": null
+  },
+  {
+    "id": "020",
+    "species_scientific": "Upeneus sulphureus",
+    "local_name_tamil": null,
+    "english_name": "Sulphur goatfish",
+    "topic": "Fishery biology and species identification",
+    "region": "Mandapam, Tamil Nadu",
     "regulation": null
   }
 ]
