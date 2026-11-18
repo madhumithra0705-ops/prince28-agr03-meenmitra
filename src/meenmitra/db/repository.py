@@ -22,6 +22,7 @@ def to_dict(doc: Document) -> dict[str, Any]:
         "regulation": doc.regulation,
         "source_url": doc.source_url,
         "doc_type": doc.doc_type,
+        "sha256": doc.sha256,
         **(doc.document_metadata or {}),
     }
 
@@ -67,6 +68,7 @@ class DocumentRepository:
                     Document.regulation.ilike(like),
                     Document.source_url.ilike(like),
                     Document.doc_type.ilike(like),
+                    Document.sha256.ilike(like),
                     cast(Document.document_metadata, Text).ilike(like),
                 )
             )
@@ -81,6 +83,7 @@ class DocumentRepository:
             "regulation": Document.regulation,
             "source_url": Document.source_url,
             "doc_type": Document.doc_type,
+            "sha256": Document.sha256,
         }
 
         for key, value in filters.items():

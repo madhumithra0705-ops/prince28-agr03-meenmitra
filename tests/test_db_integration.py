@@ -35,6 +35,7 @@ async def reset_and_seed(settings: Settings) -> None:
                         english_name="Alpha",
                         species_scientific="Species alpha",
                         doc_type="guideline",
+                        sha256="a" * 64,
                         document_metadata={"kind": "guideline"},
                     ),
                     Document(
@@ -42,6 +43,7 @@ async def reset_and_seed(settings: Settings) -> None:
                         english_name="Beta",
                         species_scientific="Species beta",
                         doc_type="circular",
+                        sha256="b" * 64,
                         document_metadata={"kind": "circular"},
                     ),
                 ]
@@ -83,3 +85,14 @@ def test_get_from_real_database(db_client):
 
     assert response.status_code == 200
     assert response.json()["english_name"] == "Alpha"
+    assert response.json()["sha256"] == "a" * 64
+
+
+def test_filter_by_sha256_with_real_database(db_client):
+    response = db_client.get(
+        "/v1/documents",
+        params={"sha256": "b" * 64},
+    )
+
+    assert response.status_code == 200
+    assert [item["id"] for item in response.json()["items"]] == ["002"]

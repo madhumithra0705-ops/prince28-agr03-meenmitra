@@ -46,12 +46,13 @@ async def main() -> None:
                         region=record.get("region"),
                         regulation=record.get("regulation"),
                         source_url=record.get("source_url"),
+                        sha256=fingerprint,
                         document_metadata={"sha256": fingerprint},
                     )
                     session.add(document)
                     inserted += 1
 
-                elif (document.document_metadata or {}).get("sha256") == fingerprint:
+                elif document.sha256 == fingerprint:
                     unchanged += 1
 
                 else:
@@ -62,6 +63,7 @@ async def main() -> None:
                     document.region = record.get("region")
                     document.regulation = record.get("regulation")
                     document.source_url = record.get("source_url")
+                    document.sha256 = fingerprint
                     document.document_metadata = {"sha256": fingerprint}
                     updated += 1
 

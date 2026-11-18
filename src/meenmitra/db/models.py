@@ -42,6 +42,8 @@ class Document(Base):
 
     doc_type: Mapped[str | None] = mapped_column(String(100))
 
+    sha256: Mapped[str | None] = mapped_column(String(64), nullable=True)
+
     document_metadata: Mapped[dict | None] = mapped_column(
         "metadata",
         JSONB,
