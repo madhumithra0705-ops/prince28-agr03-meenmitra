@@ -120,3 +120,11 @@ Command:
 uv run alembic upgrade head
 
 The API returns the sha256 field and supports filtering documents by SHA-256.
+
+## Migration 2: GIN index on metadata
+
+Proof the escape route works: downgrade -1, check, upgrade head, history.
+
+```
+(inga terminal output paste pannunga)
+```
