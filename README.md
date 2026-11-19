@@ -1,51 +1,126 @@
+
 # MeenMitra
 
-Answers fishers' questions on ban periods, gear rules, fish species and welfare schemes, linking local Tamil fish names to scientific names.
+MeenMitra helps fishers find information about fishing ban periods, gear regulations, fish species and welfare schemes. It connects local Tamil fish names with scientific names and relevant fisheries information.
 
-**Status:** Day 1 foundation (FastAPI skeleton, quality gates). Live URL from Day 5.
+**Status:** Backend foundation implemented with FastAPI, PostgreSQL, Docker, database migrations and automated tests.
 
 ## Who it's for
 
-Fishing boat owner in Rameswaram planning trips who wants to know ban periods, mesh-size rules, welfare schemes and species information.
+Fishing boat owners and fishers in Tamil Nadu who need accessible information about fishing rules, ban periods, fish species and government welfare schemes.
 
 ## The problem
 
-Information is split between scientific papers (Latin names), regulations and scheme documents, and fishers use local Tamil names like 'vanjiram' for seer fish.
+Fisheries information is spread across scientific publications, government regulations and scheme documents. Fishers often use local Tamil names, while official resources may use scientific names.
+
+MeenMitra aims to connect these different sources.
 
 ## Data sources
 
-CMFRI publications (species, stock assessments, advisories), Tamil Nadu Marine Fishing Regulation Act 1983 and rules, ban notifications, Tamil Nadu fisheries schemes, PMMSY guidelines.
+- CMFRI publications: http://eprints.cmfri.org.in/
+- Tamil Nadu Fisheries Department: https://www.fisheries.tn.gov.in/
+- PMMSY guidelines: https://pmmsy.dof.gov.in/
 
-- http://eprints.cmfri.org.in/
-- https://www.fisheries.tn.gov.in/
-- https://pmmsy.dof.gov.in/
-- Terms: CMFRI eprints are open access (check each item's licence); government documents public.
+Check the licence and usage terms of individual documents before redistribution.
 
-## Hardest problem (my interview story)
+## Current backend
 
-Name mapping across languages: local Tamil names must map to scientific names through a dictionary you build, so a question about 'vanjiram' finds papers on Scomberomorus commerson and the right regulations.
+- FastAPI application with REST API endpoints.
+- PostgreSQL database integration.
+- SQLAlchemy models and Alembic migrations.
+- JSONB metadata filtering with a GIN index.
+- SHA-256 document fingerprint support.
+- Idempotent document loading.
+- Docker Compose setup for the API and database.
+- Health and readiness endpoints.
+- Unit and PostgreSQL integration tests.
 
-## Signature feature
+## Run locally
 
-Fish card: type a local name and see the scientific name, season, rules and recent CMFRI notes.
-
-## Target metric
-
-Correct species mapping for 95%+ of 60 local names; rules answers correct for 90%+ of 30 questions.
-
-## Run it locally
+Install dependencies:
 
 ```bash
 uv sync
-cp .env.example .env   # Windows: copy .env.example .env
+```
+
+Create the environment file:
+
+```powershell
+copy .env.example .env
+```
+
+Start the application:
+
+```bash
 uv run uvicorn meenmitra.api.main:create_app --factory --reload
 ```
 
-Then open http://localhost:8000/docs
+Open the API documentation:
+
+http://localhost:8000/docs
+
+## Docker
+
+Start services:
+
+```bash
+docker compose up --build -d
+```
+
+Stop services:
+
+```bash
+docker compose down
+```
+
+## Available tasks
+
+Run tasks using Poe:
+
+```bash
+uv run poe
+```
+
+Available tasks:
+
+- `uv run poe dev`
+- `uv run poe lint`
+- `uv run poe test`
+- `uv run poe cov`
+- `uv run poe migrate`
+- `uv run poe seed`
+- `uv run poe test-integration`
+
+Integration tests require the PostgreSQL test database configuration.
 
 ## Checks
 
+Run lint:
+
 ```bash
-uv run pytest
-uv run ruff check .
+uv run poe lint
 ```
+
+Run unit tests:
+
+```bash
+uv run poe test
+```
+
+Run coverage:
+
+```bash
+uv run poe cov
+```
+
+## Project goal
+
+Build a reliable fisheries information system that helps fishers access accurate, understandable and locally relevant information.
+
+
+## Run locally in one command
+
+You need Docker Desktop running. From a fresh clone:
+
+```bash
+docker compose up --build
