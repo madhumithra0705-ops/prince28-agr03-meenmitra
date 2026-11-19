@@ -128,3 +128,35 @@ Proof the escape route works: downgrade -1, check, upgrade head, history.
 ```
 (inga terminal output paste pannunga)
 ```
+## Docker: non-root user and build cache
+
+- Non-root check: `docker run --rm meenmitra:dev id`
+- Result: `uid=999(app) gid=999(app) groups=999(app)`
+- Initial build time: 19.2 seconds.
+- Cache-test rebuild time: 15.3 seconds.
+- Dependency step `uv sync --locked --no-install-project --no-dev` was `CACHED`.
+- Temporary `/health` docstring change was reverted after the test.
+
+## Docker: database failure and automatic recovery
+
+1. API liveness while database was stopped:
+   `curl.exe -s localhost:8000/health`
+   Output:
+   `{"status":"ok","app":"meenmitra","env":"local"}`
+
+2. Readiness while database was stopped:
+   `curl.exe -s localhost:8000/ready`
+   Output:
+   `{"status":"not_ready","checks":{"database":false}}`
+
+3. Database restarted:
+   `docker compose start db`
+   Output:
+   `Container meenmitra-db-1 Started`
+
+4. Readiness after database recovery:
+   `curl.exe -s localhost:8000/ready`
+   Output:
+   `{"status":"ready","checks":{"database":true}}`
+
+Result: The API recovered automatically after PostgreSQL restarted. No API restart was needed.
