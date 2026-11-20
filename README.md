@@ -3,9 +3,14 @@
 
 MeenMitra helps fishers find information about fishing ban periods, gear regulations, fish species and welfare schemes. It connects local Tamil fish names with scientific names and relevant fisheries information.
 
+[![CI](https://github.com/madhumithra0705-ops/prince28-agr03-meenmitra/actions/workflows/ci.yml/badge.svg)](https://github.com/madhumithra0705-ops/prince28-agr03-meenmitra/actions/workflows/ci.yml)
+[![Live](https://img.shields.io/website?url=https%3A%2F%2Fmeenmitra.onrender.com%2Fhealth&label=live)](https://meenmitra.onrender.com/docs)
+[![Uptime (30 days)](https://img.shields.io/uptimerobot/ratio/m804746601-5e3aa5afee17f6585d33a12c)](https://meenmitra.onrender.com/health)
 [![Uptime Robot status](https://img.shields.io/uptimerobot/status/m804746601-5e3aa5afee17f6585d33a12c?label=API%20Status)](https://meenmitra.onrender.com/health)
 
-**Status:** Backend foundation implemented with FastAPI, PostgreSQL, Docker, database migrations and automated tests.
+**Live:** [https://meenmitra.onrender.com](https://meenmitra.onrender.com) · [API docs](https://meenmitra.onrender.com/docs) · [health](https://meenmitra.onrender.com/health)
+
+**Status:** Week 1 complete · live at [https://meenmitra.onrender.com](https://meenmitra.onrender.com)
 
 ## Who it's for
 
