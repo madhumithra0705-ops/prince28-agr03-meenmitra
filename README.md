@@ -3,6 +3,8 @@
 
 MeenMitra helps fishers find information about fishing ban periods, gear regulations, fish species and welfare schemes. It connects local Tamil fish names with scientific names and relevant fisheries information.
 
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m804746601-5e3aa5afee17f6585d33a12c?label=API%20Status)](https://meenmitra.onrender.com/health)
+
 **Status:** Backend foundation implemented with FastAPI, PostgreSQL, Docker, database migrations and automated tests.
 
 ## Who it's for
@@ -117,10 +119,10 @@ uv run poe cov
 
 Build a reliable fisheries information system that helps fishers access accurate, understandable and locally relevant information.
 
-
 ## Run locally in one command
 
 You need Docker Desktop running. From a fresh clone:
 
 ```bash
 docker compose up --build
+```
