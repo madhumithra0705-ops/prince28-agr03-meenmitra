@@ -5,9 +5,9 @@ This file records the sources used to collect fisheries information.
 
 | ID | Source | Information | Format | Terms / Licence |
 |---|---|---|---|---|
-| SRC-01 | CMFRI Publications | Fish species, stock assessments and advisories | PDF / Webpage (to verify per item) | Open access; check each publication's licence |
-| SRC-02 | Tamil Nadu Fisheries Department | Fishing regulations, ban notifications and welfare schemes | Webpage / PDF (to verify) | Government documents; check each document's terms |
-| SRC-03 | PMMSY | Fisheries development scheme guidelines | PDF / Webpage (to verify) | Check the terms of each document |
+| SRC-01 | CMFRI Eprints Repository | Fish species, research papers, stock assessments and advisories | PDF / Webpage | Default CC BY-NC-ND 4.0 unless otherwise specified. Metadata is freely reusable with attribution. Check each item's access level and licence before downloading or displaying full text. |
+| SRC-02 | Tamil Nadu Fisheries Department | Fishing regulations, ban notifications and welfare schemes | Webpage / PDF | robots.txt returned 404. No department-specific reuse policy verified. Tamil Nadu Government portal terms do not grant explicit reproduction or storage permission. Check individual documents and obtain permission where required. |
+| SRC-03 | PMMSY – Department of Fisheries, Government of India | Fisheries scheme guidelines, approved activities and welfare information | Webpage / PDF | Reproduction requires prior permission by email. Source must be prominently acknowledged. Third-party copyrighted material requires separate permission. Download and storage permissions are not explicitly specified; verify individual documents. |
 
 ## Data Fields
 
