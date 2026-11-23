@@ -15,6 +15,7 @@ from pypdf import PdfReader
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "data" / "manifest.jsonl"
 CACHE = ROOT / "data" / "raw" / ".measured.json"
+SOURCES = ROOT / "data" / "sources.csv"
 DATASET = ROOT / "DATASET.md"
 CAPACITY = ROOT / "docs" / "CAPACITY.md"
 
@@ -65,6 +66,26 @@ def load_records() -> list[dict]:
         except json.JSONDecodeError as exc:
             raise SystemExit(f"Invalid JSON in manifest at line {line_number}: {exc}") from exc
     return records
+
+
+def load_source_licences() -> dict[str, str]:
+    """Load source-level licence statements from sources.csv."""
+    licences: dict[str, set[str]] = defaultdict(set)
+
+    if not SOURCES.exists():
+        return {}
+
+    import csv
+
+    with SOURCES.open(encoding="utf-8-sig", newline="") as source_file:
+        reader = csv.DictReader(source_file)
+        for row in reader:
+            url = (row.get("url") or "").strip()
+            licence = (row.get("licence") or "").strip()
+            if url and licence:
+                licences[url].add(licence)
+
+    return {url: "; ".join(sorted(values)) for url, values in licences.items()}
 
 
 def latest_downloads(records: list[dict]) -> list[dict]:
@@ -167,7 +188,12 @@ def put_block(path: Path, generated: str) -> None:
     path.write_text(updated, encoding="utf-8")
 
 
-def dataset_block(records: list[dict], measurements: list[dict], full_pages: int) -> str:
+def dataset_block(
+    records: list[dict],
+    measurements: list[dict],
+    full_pages: int,
+    source_licences: dict[str, str],
+) -> str:
     grouped: dict[str, list[tuple[dict, dict]]] = defaultdict(list)
     for record, measurement in zip(records, measurements, strict=False):
         grouped[record.get("source") or "unknown"].append((record, measurement))
@@ -189,8 +215,11 @@ def dataset_block(records: list[dict], measurements: list[dict], full_pages: int
         "",
         "## Breakdown by source",
         "",
-        "| Source | Files | Size (MiB) | Pages | Measurement | Latest fetch | Example URL |",
-        "|---|---:|---:|---:|---|---|---|",
+        (
+            "| Source | Files | Size (MiB) | Pages | Licence | "
+            "Measurement | Latest fetch | Example URL |"
+        ),
+        "|---|---:|---:|---:|---|---|---|---|",
     ]
 
     for source, items in sorted(grouped.items()):
@@ -201,10 +230,21 @@ def dataset_block(records: list[dict], measurements: list[dict], full_pages: int
         latest_date = max(dates, default="")
         example_url = items[0][0].get("url", "")
         method = "; ".join(methods)
+
+        licence_values = sorted(
+            {
+                source_licences.get(r.get("url", ""), "").strip()
+                or str(r.get("licence") or "").strip()
+                for r, _ in items
+            }
+            - {""}
+        )
+        licence = "; ".join(licence_values) if licence_values else "Not recorded"
+
         lines.append(
             f"| {safe_cell(source)} | {len(items)} | {size:.2f} | "
-            f"{pages} | {safe_cell(method)} | {safe_cell(latest_date)} | "
-            f"{safe_cell(example_url)} |"
+            f"{pages} | {safe_cell(licence)} | {safe_cell(method)} | "
+            f"{safe_cell(latest_date)} | {safe_cell(example_url)} |"
         )
 
     lines.extend(
@@ -238,6 +278,10 @@ def dataset_block(records: list[dict], measurements: list[dict], full_pages: int
                 "downloaded and the local file exists."
             ),
             "- Only the latest manifest record for each URL is counted.",
+            (
+                "- Licence statements are source-level declarations from data/sources.csv "
+                "or the manifest; they do not independently grant reuse rights."
+            ),
         ]
     )
     return "\n".join(lines)
@@ -327,6 +371,7 @@ def main() -> None:
         raise SystemExit("--full-pages must be greater than zero")
 
     records = latest_downloads(load_records())
+    source_licences = load_source_licences()
     CACHE.parent.mkdir(parents=True, exist_ok=True)
 
     try:
@@ -340,7 +385,10 @@ def main() -> None:
     DATASET.parent.mkdir(parents=True, exist_ok=True)
     CAPACITY.parent.mkdir(parents=True, exist_ok=True)
 
-    put_block(DATASET, dataset_block(records, measurements, args.full_pages))
+    put_block(
+        DATASET,
+        dataset_block(records, measurements, args.full_pages, source_licences),
+    )
     put_block(CAPACITY, capacity_block(measurements, args.full_pages))
 
     total_bytes = sum(item["bytes"] for item in measurements)

@@ -393,3 +393,9 @@ These failures are recorded rather than treated as successful downloads.
 - Page and token estimates are uncertain, especially for scanned PDFs and character-based HTML page estimates.
 - At 100,000 pages, the linear projection is approximately 3.57 GiB raw files, 202.8 MiB extracted text, 216.3 MiB vectors and $6.64 embedding cost.
 - These figures are projections; actual storage and costs depend on document characteristics and provider pricing.
+
+- Manual Ctrl+C kill-and-resume test completed in an isolated temporary directory using 20 CMFRI metadata URLs.
+- Interrupted after 3 downloads: manifest contained 3 downloaded records and 0 leftover `.part` files.
+- Resume run: 17 downloaded, 3 skipped, 0 blocked, 0 failed.
+- All 20 URLs completed successfully; the 3 previously downloaded files were not downloaded again.
+- The interruption test used a temporary directory and did not modify the project corpus.
