@@ -29,7 +29,7 @@ MeenMitra answers fisheries-related questions about fishing-ban periods, gear ru
 
 <!-- generated:start -->
 
-*Generated: 2026-11-23T17:31:57.032951+00:00*
+*Generated: 2026-11-23T17:59:53.915002+00:00*
 
 ## Collected corpus summary
 
@@ -41,17 +41,17 @@ MeenMitra answers fisheries-related questions about fishing-ban periods, gear ru
 
 ## Breakdown by source
 
-| Source | Files | Size (MiB) | Pages | Measurement | Latest fetch | Example URL |
-|---|---:|---:|---:|---|---|---|
-| cmfri | 303 | 33.66 | 647 | HTML visible text; 3,000 characters approximated as one page; PDF page count and extracted text | 2026-11-23T16:40:48.271734+00:00 | https://eprints.cmfri.org.in/19715/1/Marine%20Fish%20Landings%20in%20India%20-%202025.pdf |
-| fimsul | 2 | 2.54 | 112 | PDF page count and extracted text | 2026-11-23T15:41:44.846019+00:00 | https://eprints.cmfri.org.in/9253/1/35.pdf |
-| fsi | 1 | 2.24 | 237 | PDF page count and extracted text | 2026-11-23T15:35:38.169393+00:00 | https://fsi.gov.in/sites/default/files/pmmsy-document/PMMSY_Guidelines_24_June_2020.pdf |
-| india-fisheries-sustainability | 4 | 0.01 | 8 | Text characters; 3,000 characters approximated as one page | 2026-11-23T16:48:18.538370+00:00 | https://github.com/msrishav-28/india-fisheries-sustainability/blob/HEAD/DATA_INVENTORY.md |
-| niti-for-states | 1 | 3.64 | 174 | PDF page count and extracted text | 2026-11-23T16:04:41.972592+00:00 | https://www.nitiforstates.gov.in/public-assets/Policy/policy_files/GSS1155A000607.pdf |
-| pmmsy | 1 | 0.35 | 9 | PDF page count and extracted text | 2026-11-23T15:35:28.419747+00:00 | https://pmmsy.dof.gov.in/assets/documents/farmers-corner/FAQ%20for%20Farmers.pdf |
-| tn-fisheries | 1 | 0.24 | 2 | HTML visible text; 3,000 characters approximated as one page | 2026-11-23T15:35:45.872963+00:00 | https://www.fisheries.tn.gov.in/pages/view/welfareschemes |
-| tn-fisheries-sitemap | 31 | 7.50 | 70 | HTML visible text; 3,000 characters approximated as one page | 2026-11-23T16:52:50.479912+00:00 | https://www.fisheries.tn.gov.in/pages/fishseedavailability |
-| tn-government | 1 | 0.66 | 129 | PDF page count and extracted text | 2026-11-23T15:35:26.488906+00:00 | https://www.stationeryprinting.tn.gov.in/extraordinary/2020/65_Ex_III_1a.pdf |
+| Source | Files | Size (MiB) | Pages | Licence | Measurement | Latest fetch | Example URL |
+|---|---:|---:|---:|---|---|---|---|
+| cmfri | 303 | 33.66 | 647 | All rights reserved; publisher permission required before reproducing. Download and storage permission not established.; Item-specific licence not verified; publisher permission required before reproducing. Download and storage permission unverified.; Metadata only: CMFRI Repository Policy permits metadata harvesting and reuse with attribution to Eprints@CMFRI; this does not grant rights to reuse full-text content. | HTML visible text; 3,000 characters approximated as one page; PDF page count and extracted text | 2026-11-23T16:40:48.271734+00:00 | https://eprints.cmfri.org.in/19715/1/Marine%20Fish%20Landings%20in%20India%20-%202025.pdf |
+| fimsul | 2 | 2.54 | 112 | Educational or non-profit reproduction permitted with source acknowledgement; other uses require permission. | PDF page count and extracted text | 2026-11-23T15:41:44.846019+00:00 | https://eprints.cmfri.org.in/9253/1/35.pdf |
+| fsi | 1 | 2.24 | 237 | Item-specific reuse permission not verified; confirm with publisher before reproducing. | PDF page count and extracted text | 2026-11-23T15:35:38.169393+00:00 | https://fsi.gov.in/sites/default/files/pmmsy-document/PMMSY_Guidelines_24_June_2020.pdf |
+| india-fisheries-sustainability | 4 | 0.01 | 8 | Repository declares MIT; third-party datasets and referenced source materials may have separate terms. | Text characters; 3,000 characters approximated as one page | 2026-11-23T16:48:18.538370+00:00 | https://github.com/msrishav-28/india-fisheries-sustainability/blob/HEAD/DATA_INVENTORY.md |
+| niti-for-states | 1 | 3.64 | 174 | Reuse permission not verified; confirm with publisher before reproducing. | PDF page count and extracted text | 2026-11-23T16:04:41.972592+00:00 | https://www.nitiforstates.gov.in/public-assets/Policy/policy_files/GSS1155A000607.pdf |
+| pmmsy | 1 | 0.35 | 9 | Prior email permission required for reproduction; acknowledge the source; third-party content requires separate permission. | PDF page count and extracted text | 2026-11-23T15:35:28.419747+00:00 | https://pmmsy.dof.gov.in/assets/documents/farmers-corner/FAQ%20for%20Farmers.pdf |
+| tn-fisheries | 1 | 0.24 | 2 | Official department webpage; reuse permission not verified; confirm permission before reproducing. | HTML visible text; 3,000 characters approximated as one page | 2026-11-23T15:35:45.872963+00:00 | https://www.fisheries.tn.gov.in/pages/view/welfareschemes |
+| tn-fisheries-sitemap | 31 | 7.50 | 70 | Official department pages; reuse permission not verified; confirm permission before reproducing. | HTML visible text; 3,000 characters approximated as one page | 2026-11-23T16:52:50.479912+00:00 | https://www.fisheries.tn.gov.in/pages/fishseedavailability |
+| tn-government | 1 | 0.66 | 129 | Official government gazette; applicable reproduction terms not independently verified. | PDF page count and extracted text | 2026-11-23T15:35:26.488906+00:00 | https://www.stationeryprinting.tn.gov.in/extraordinary/2020/65_Ex_III_1a.pdf |
 
 ## Downloaded files
 
@@ -265,6 +265,7 @@ The first 200 downloaded files currently present on disk:
 - HTML and plain-text page counts are estimates using 3,000 characters per page.
 - Git repository Markdown files are included when their manifest status is downloaded and the local file exists.
 - Only the latest manifest record for each URL is counted.
+- Licence statements are source-level declarations from data/sources.csv or the manifest; they do not independently grant reuse rights.
 
 <!-- generated:end -->
 
