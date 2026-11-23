@@ -329,3 +329,67 @@ The newer schema is backward-compatible with the older application version for t
 - UptimeRobot checks `/health` every 5 minutes.
 - Email alerts are configured.
 - One thing that would make my live app faster on its first request: Use an always-on hosting instance to avoid cold-start delays on the free instance.
+
+
+## D06 · Corpus collection and downloader verification
+
+### Download and resume results
+
+The downloader was run against the 12 configured sources.
+
+| Run | Downloaded | Skipped | Failed |
+|---|---:|---:|---:|
+| Initial run | 9 | 0 | 3 |
+| Resume run | 0 | 9 | 3 |
+| Third run | 0 | 9 | 3 |
+
+- The second and third runs skipped all 9 previously completed files.
+- No leftover `.part` files were found under `data/raw/`.
+- Deleted `data/raw/fimsul/35-a68c60fc70.pdf` and ran the downloader again.
+- The missing PDF was downloaded again successfully: 1 downloaded, 8 skipped, 3 failed.
+
+### Test verification
+
+- Cancellation unit test: 1 passed.
+- Full unit test suite: 40 passed.
+- The live Ctrl+C interruption demonstration was not verified.
+
+### Outstanding source URLs
+
+Three configured Tamil Nadu Fisheries PDF URLs returned HTTP 404:
+- Fisheries Policy Note 2022–23
+- Welfare Schemes PDF
+- Fisheries Information Handbook
+
+These failures are recorded rather than treated as successful downloads.
+## D06 - Dataset and capacity report
+
+### Dataset measurement
+
+- Generated `DATASET.md` from the download manifest and files present on disk.
+- Downloaded files measured: 345.
+- Total downloaded size: 50.84 MiB.
+- Measured/estimated pages: 1,388.
+- Extracted text: 2,459,289 characters.
+- CMFRI entries: 303, including metadata/item pages; these are not 303 full-text PDFs.
+- Source breakdown and downloaded-file listing are recorded in `DATASET.md`.
+- Known gaps and source reuse restrictions are documented in `DATASET.md`.
+
+### Full-corpus capacity estimate
+
+- Target: 10,000 pages.
+- Estimated target tokens: 4,429,555.
+- Estimated chunks: 7,383, using 700-token chunks and 100-token overlap.
+- Projected raw corpus: 366.28 MiB.
+- Estimated vector storage: 21.63 MiB.
+- Estimated extracted-text storage: 20.28 MiB.
+- Estimated embedding cost: $0.6644 (approximately INR 63.12), using an assumed rate of $0.15 per million tokens.
+
+### Capacity conclusions and limitations
+
+- The embedding cost is a planning estimate, not a confirmed provider bill.
+- The combined estimated vector and extracted-text storage is 41.91 MiB.
+- Free PostgreSQL capacity has not been confirmed because actual quota and usage have not been checked.
+- Page and token estimates are uncertain, especially for scanned PDFs and character-based HTML page estimates.
+- At 100,000 pages, the linear projection is approximately 3.57 GiB raw files, 202.8 MiB extracted text, 216.3 MiB vectors and $6.64 embedding cost.
+- These figures are projections; actual storage and costs depend on document characteristics and provider pricing.
