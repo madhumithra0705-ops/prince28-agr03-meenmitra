@@ -934,42 +934,61 @@ Result: The answer did not match the dataset. The model supplied a local name wi
 
 ### D08 · LLM gateway
 
-- Primary configured in .env: gemini-3.5-flash-lite (Gemini) · fallback: openai/gpt-oss-20b (Groq)
-- Intended/default primary gemini-3.8-flash encountered HTTP 503 and ReadTimeout errors.
-- First question on my laptop: first words after ___ s, total ___ s, tokens in ___ / out ___, cost Rs ___
-- Same question on my live URL (second, awake request): first words after ___ s.
-- Day 1 target: under 1.5 s
+- Primary configured in `.env`: `gemini-3.5-flash-lite` (Gemini) · fallback: `openai/gpt-oss-20b` (Groq).
+- Intended/default primary `gemini-3.8-flash` encountered HTTP 503 and ReadTimeout errors.
+- A successful Gemini response without fallback was verified locally.
+- Production `POST /v1/chat` with `stream: true` returned HTTP 200 and streamed Server-Sent Events.
+- Production test question: "What is the scientific name of Indian mackerel?"
+- Production response used Groq fallback: `openai/gpt-oss-20b`.
+- Production latency: 1,527 ms.
+- Production tokens: 292 input / 255 output.
+- Production estimated cost: Rs 0.009348.
+- Production fallback metadata: `fallback_used: true`, `attempts: 1`.
+- Laptop first-token and total-response timings: not recorded in the available evidence.
+- Day 1 target: under 1.5 seconds.
 
 ### Tokens: English against Tamil
 
-| Message | tokens in |
-|---|---|
-| "Hi" (baseline: mostly my system prompt) | |
-| The English sentence | |
-| The same sentence in Tamil | |
+| Message | tokens |
+|---|---:|
+| "Hi" (baseline, mostly system prompt) | 221 |
+| English sentence | 229 |
+| Same sentence in Tamil | 237 |
+| English message only | 8 |
+| Tamil message only | 16 |
 
-- The Tamil message needs about ___ times the tokens of the English one.
+- Tamil message requires 2x the tokens of the English message.
 
 ### What the model does without my documents
 
-- Question 6 ("Will there be good catch near Dhanushkodi tomorrow?"): did it admit it can't know? Its exact words:
-- A detail it got wrong or invented (question → what it said → what is true):
-- The off-topic question: did it decline in one sentence?
+- Question: "Will there be good catch near Dhanushkodi tomorrow?"
+- Result: MeenMitra said it was not sure about tomorrow's catch and did not invent a prediction.
+- Off-topic question: "Who won the 2011 cricket world cup?"
+- Result: MeenMitra declined in one sentence.
+- A document-based question about the scientific name of Indian mackerel exposed an accuracy issue.
+- Expected answer: `Rastrelliger kanagurta`.
+- Production answer: `Scomberomorus guttatus`.
+- Result: The production answer was incorrect for Indian mackerel.
 
 ### Fallback and circuit breaker
 
-- With the primary broken: provider Gemini (invalid model test) · fallback Groq · first words after ___ s
+- Production primary/fallback test: Groq answered after fallback; provider `groq`, model `openai/gpt-oss-20b`.
+- Production fallback response latency: 1,527 ms.
+- Production response metadata: `fallback_used: true`, `attempts: 1`.
+- Local testing verified Groq fallback and circuit-breaker behaviour.
 - Circuit breaker failure threshold: 3 consecutive failures.
-- The question at which "llm call gemini … error" stopped appearing in the log: number ___
+- Exact log question number at which Gemini error messages stopped: not recorded in the available evidence.
 
 ### The bill
 
-- /v1/usage today: calls 53, errors 22, fallbacks 21, cost Rs 0.384
-- Average per answered question: Rs ___ (my Day 1 target: under Rs 0.50)
+- Latest production `/v1/usage?days=7` response: 59 calls, 25 errors, 24 fallbacks, 9,088 input tokens, 6,894 output tokens, total estimated cost Rs 0.4146.
+- Individual production chat test cost: Rs 0.009348.
+- Average cost per answered question: not calculated because the usage response does not provide a separate successful-call count.
 
 ### One thing that went wrong today, and how I fixed it
 
 - The default Gemini model encountered HTTP 503 and ReadTimeout errors.
-- Restored gemini-3.5-flash-lite in .env.
-- Verified a successful Gemini response without fallback.
-- Verified Groq fallback and circuit-breaker behaviour.
+- Restored `gemini-3.5-flash-lite` in `.env`.
+- Verified a successful Gemini response without fallback locally.
+- Verified Groq fallback and circuit-breaker behaviour locally.
+- Production streaming worked, but the Indian mackerel scientific-name answer was incorrect. This remains an answer-quality issue to investigate.
