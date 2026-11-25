@@ -898,3 +898,78 @@ The remaining work is primarily verification and delivery housekeeping: confirm 
 **Tamil Nadu Fisheries — Trafilatura is better.** It extracts the main article and removes navigation menus. BeautifulSoup retains excessive navigation links and unrelated page text, even though it extracts more characters.
 
 **Tamil Nadu Gazette — Neither parser is clearly better.** The original page contains a readable Tamil form, but extracted Tamil characters and headings are garbled. Both PyMuPDF and pypdf have Tamil encoding limitations.
+
+### English vs Tamil Token Comparison
+- Hi (baseline): 221 tokens
+- English sentence: 229 tokens
+- Tamil sentence: 237 tokens
+- English message tokens: 8
+- Tamil message tokens: 16
+- Tamil requires 2x the English message tokens.
+
+### Ask What It Can't Know
+
+- Question 6: "Will there be good catch near Dhanushkodi tomorrow?"
+- Result: MeenMitra said it was not sure about tomorrow's catch. It did not invent a prediction.
+- Off-topic question: "Who won the 2011 cricket world cup?"
+- Result: MeenMitra declined in one sentence: "I’m sorry, but that question is outside the scope of MeenMitra."
+- Provider: Groq fallback was used for the off-topic question.
+
+###Day 8 testing section:
+1.Document-based question: “What is the scientific name of Indian mackerel?”
+
+Expected from data/sample_records.json: Rastrelliger kanagurta
+
+MeenMitra answered: Scomberomorus guttatus
+
+Result: Incorrect scientific name stated confidently. Evidence that answers must be grounded in retrieved documents.
+2.Document-based question: “What are the Tamil local names listed for Indian mackerel in the dataset?”
+
+Expected from data/sample_records.json, record 004: Kumla / Kanangeluthi.
+
+MeenMitra answered: Kanankahthai (கானாங்களுத்தி).
+
+Result: The answer did not match the dataset. The model supplied a local name without retrieving or verifying the record.
+
+
+### D08 · LLM gateway
+
+- Primary configured in .env: gemini-3.5-flash-lite (Gemini) · fallback: openai/gpt-oss-20b (Groq)
+- Intended/default primary gemini-3.8-flash encountered HTTP 503 and ReadTimeout errors.
+- First question on my laptop: first words after ___ s, total ___ s, tokens in ___ / out ___, cost Rs ___
+- Same question on my live URL (second, awake request): first words after ___ s.
+- Day 1 target: under 1.5 s
+
+### Tokens: English against Tamil
+
+| Message | tokens in |
+|---|---|
+| "Hi" (baseline: mostly my system prompt) | |
+| The English sentence | |
+| The same sentence in Tamil | |
+
+- The Tamil message needs about ___ times the tokens of the English one.
+
+### What the model does without my documents
+
+- Question 6 ("Will there be good catch near Dhanushkodi tomorrow?"): did it admit it can't know? Its exact words:
+- A detail it got wrong or invented (question → what it said → what is true):
+- The off-topic question: did it decline in one sentence?
+
+### Fallback and circuit breaker
+
+- With the primary broken: provider Gemini (invalid model test) · fallback Groq · first words after ___ s
+- Circuit breaker failure threshold: 3 consecutive failures.
+- The question at which "llm call gemini … error" stopped appearing in the log: number ___
+
+### The bill
+
+- /v1/usage today: calls 53, errors 22, fallbacks 21, cost Rs 0.384
+- Average per answered question: Rs ___ (my Day 1 target: under Rs 0.50)
+
+### One thing that went wrong today, and how I fixed it
+
+- The default Gemini model encountered HTTP 503 and ReadTimeout errors.
+- Restored gemini-3.5-flash-lite in .env.
+- Verified a successful Gemini response without fallback.
+- Verified Groq fallback and circuit-breaker behaviour.
