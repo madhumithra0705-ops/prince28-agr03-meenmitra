@@ -12,6 +12,7 @@ from meenmitra.config import Settings, get_settings
 from meenmitra.db.llm_calls import make_recorder
 from meenmitra.db.session import make_engine, make_sessionmaker
 from meenmitra.llm.gateway import build_gateway
+from meenmitra.llm.prompts import latest, read_prompt
 from meenmitra.logging_setup import setup_logging
 
 logger = logging.getLogger("meenmitra")
@@ -33,6 +34,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.state.engine = engine
     app.state.sessionmaker = make_sessionmaker(engine)
     app.state.system_prompt = chat.load_prompt(settings.prompts_dir)  # missing file: no start
+    app.state.classifier_version = latest(settings.prompts_dir, "classify")
+    app.state.classifier_prompt = read_prompt(settings.prompts_dir, app.state.classifier_version)
     app.state.gateway = build_gateway(settings, make_recorder(app.state.sessionmaker))
 
     app.middleware("http")(request_context)

@@ -19,7 +19,7 @@ def events(body: str) -> list[tuple[str, dict]]:
 
 
 def test_chat_without_streaming_returns_json(client, llm):
-    llm.script = ["Use curly braces in the path."]
+    llm.script = ["docs", "Use curly braces in the path."]
     r = client.post(
         "/v1/chat", json={"message": "How do I declare a path parameter?", "stream": False}
     )
@@ -27,16 +27,42 @@ def test_chat_without_streaming_returns_json(client, llm):
     body = r.json()
     assert body["answer"] == "Use curly braces in the path."
     assert body["provider"] == "fake" and body["tokens_out"] == 6 and "cost_inr" in body
+    assert llm.calls == 2
 
 
 def test_chat_streams_pieces_and_ends_with_a_done_event(client, llm):
-    llm.script = ["Use curly braces in the path."]
+    llm.script = ["docs", "Use curly braces in the path."]
     r = client.post("/v1/chat", json={"message": "How do I declare a path parameter?"})
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/event-stream")
     received = events(r.text)
     text = "".join(data["delta"] for name, data in received if name == "")
     assert text.strip() == "Use curly braces in the path."
     assert received[-1][0] == "done" and received[-1][1]["model"] == "fake-1"
+    assert llm.calls == 2
+
+
+def test_personal_question_returns_fixed_answer_without_chat_call(client, llm):
+    llm.script = ["personal"]
+    r = client.post(
+        "/v1/chat",
+        json={"message": "Will there be good catch near Dhanushkodi tomorrow?"},
+    )
+    assert r.status_code == 200
+    received = events(r.text)
+    assert received[0][1]["delta"] == "I can't know that."
+    assert received[-1] == ("done", {"answer": "I can't know that."})
+    assert llm.calls == 1
+
+
+def test_off_topic_question_returns_fixed_answer_without_chat_call(client, llm):
+    llm.script = ["off_topic"]
+    r = client.post(
+        "/v1/chat",
+        json={"message": "Write a birthday wish for my friend.", "stream": False},
+    )
+    assert r.status_code == 200
+    assert r.json()["answer"] == "I can't know that."
+    assert llm.calls == 1
 
 
 def test_the_model_gets_the_system_prompt_from_the_prompt_file(client):
@@ -49,15 +75,15 @@ def test_an_empty_message_is_a_422_problem(client):
 
 
 def test_when_no_model_can_answer_the_api_says_503_not_200(client, llm):
-    llm.script = [LLMError("HTTP 401: invalid API key", retryable=False)]
+    llm.script = ["docs", LLMError("HTTP 401: invalid API key", retryable=False)]
     r = client.post("/v1/chat", json={"message": "hello"})
     assert r.status_code == 503 and "No model could answer" in r.json()["detail"]
 
 
 def test_a_failure_in_the_middle_of_a_stream_is_reported_as_an_error_event(client, llm):
-    llm.script = [("partial", LLMError("HTTP 503: overloaded", retryable=True))]
+    llm.script = ["docs", ("partial", LLMError("HTTP 503: overloaded", retryable=True))]
     r = client.post("/v1/chat", json={"message": "hello"})
-    assert r.status_code == 200  # too late to change it: the first bytes were already sent
+    assert r.status_code == 200
     assert events(r.text)[-1][0] == "error"
 
 

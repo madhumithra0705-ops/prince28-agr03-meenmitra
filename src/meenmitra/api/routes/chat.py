@@ -11,6 +11,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
 from meenmitra.api.deps import GatewayDep, UsageDep
+from meenmitra.llm.classify import classify
 from meenmitra.llm.gateway import LLMResult, LLMUnavailable
 
 router = APIRouter(tags=["chat"])
@@ -40,14 +41,36 @@ def summary(result: LLMResult) -> dict:
 
 @router.post("/chat")
 async def chat(body: ChatRequest, request: Request, gateway: GatewayDep):
-    messages = [
-        {"role": "system", "content": request.app.state.system_prompt},
-        {"role": "user", "content": body.message},
-    ]
     try:
+        label, _ = await classify(
+            gateway,
+            request.app.state.classifier_prompt,
+            request.app.state.classifier_version,
+            body.message,
+        )
+
+        if label != "docs":
+            answer = "I can't know that."
+            if not body.stream:
+                return {"answer": answer}
+
+            async def rejected_events() -> AsyncIterator[str]:
+                yield sse({"delta": answer})
+                yield sse({"answer": answer}, event="done")
+
+            headers = {"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
+            return StreamingResponse(
+                rejected_events(), media_type="text/event-stream", headers=headers
+            )
+
+        messages = [
+            {"role": "system", "content": request.app.state.system_prompt},
+            {"role": "user", "content": body.message},
+        ]
         if not body.stream:
             result = await gateway.generate(messages, prompt_version=PROMPT_VERSION)
             return {"answer": result.text, **summary(result)}
+
         stream = gateway.stream(messages, prompt_version=PROMPT_VERSION)
         first = await anext(stream)  # wait for the first piece BEFORE sending status 200
     except LLMUnavailable as exc:

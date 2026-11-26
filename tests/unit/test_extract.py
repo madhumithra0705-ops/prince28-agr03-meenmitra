@@ -29,7 +29,13 @@ def model_saying(*replies: str) -> tuple[FakeLLM, LLMGateway]:
 
 async def ask(gateway: LLMGateway, **options):
     return await extract(
-        gateway, Notice, "Fill the record.", "extract_v1", "Fee circular", "New fees.", **options
+        gateway,
+        Notice,
+        "Fill the record.",
+        "extract_v1",
+        "Fee circular",
+        "New fees in 2024.",
+        **options,
     )
 
 
@@ -53,7 +59,7 @@ async def test_a_valid_reply_is_accepted_at_once():
     assert out.attempts == 1 and out.errors == []
     system, user = llm.seen[0]["messages"]
     assert "Fill the record." in system["content"] and '"year"' in system["content"]  # the schema
-    assert user["content"] == "Title: Fee circular\n<document>\nNew fees.\n</document>"
+    assert user["content"] == "Title: Fee circular\n<document>\nNew fees in 2024.\n</document>"
 
 
 async def test_a_rejected_reply_goes_back_with_the_reason_and_gets_repaired():
@@ -65,6 +71,18 @@ async def test_a_rejected_reply_goes_back_with_the_reason_and_gets_repaired():
     assert rejected["role"] == "assistant" and "3024" in rejected["content"]
     assert "rejected" in repair["content"] and "2027" in repair["content"]
     assert out.tokens_in == 24  # both calls are paid for: 12 + 12
+
+
+async def test_a_year_not_present_in_the_document_is_rejected_and_repaired():
+    llm, gateway = model_saying(
+        '{"kind": "circular", "year": 2023}',
+        GOOD,
+    )
+    out = await ask(gateway)
+    assert out.record.year == 2024
+    assert out.attempts == 2
+    assert out.errors == ["year 2023 is not in the document"]
+    assert "year 2023 is not in the document" in llm.seen[1]["messages"][-1]["content"]
 
 
 async def test_after_three_bad_replies_there_is_no_record():
