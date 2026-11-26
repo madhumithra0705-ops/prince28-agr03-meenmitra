@@ -17,3 +17,5 @@ data/raw/
 # Test and coverage output
 .coverage
 htmlcov/
+eval/cache/
+*.log

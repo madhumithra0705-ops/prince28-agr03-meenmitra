@@ -992,3 +992,47 @@ Result: The answer did not match the dataset. The model supplied a local name wi
 - Verified a successful Gemini response without fallback locally.
 - Verified Groq fallback and circuit-breaker behaviour locally.
 - Production streaming worked, but the Indian mackerel scientific-name answer was incorrect. This remains an answer-quality issue to investigate.
+
+## D09 · Prompt versions compared
+
+<!-- prompts:start -->
+
+| Prompt version | Correct | Accuracy | Invalid replies | Avg tokens in |
+|---|---|---|---|---|
+| classify_v1 | 13/20 | 65% | 0 | 48 |
+| classify_v2 | 20/20 | 100% | 0 | 255 |
+| classify_v3 | 20/20 | 100% | 0 | 392 |
+| classify_v4 | 20/20 | 100% | 0 | 404 |
+
+<!-- prompts:end -->
+
+### D09 · Test-set label correction
+
+- Corrected test-set line 10 from docs to personal.
+- Reason: doc\QUESTIONS.md explicitly marks yesterday's sardine price at Rameswaram market as unanswerable and absent from the documents.
+- This corrects the expected label; it does not represent a prompt improvement.
+
+
+### D09 · Prompts and structured output
+
+- My best router prompt: classify_v__ with ___ / 20
+- What I changed in v4, and what happened to the score:
+- The question my best version still gets wrong (line, wanted, got), and why I think so:
+- A label in my test set that I changed after seeing the results (or "none"):
+- Input tokens per question: v1 ___ , best version ___ . Is the extra accuracy worth it?
+
+### My contract (DocMeta)
+
+- Fields I kept from my project card:
+- Fields I deleted, and why they make no sense per document:
+- The field I tightened, and how:
+
+### Extraction run
+
+- Prompt version: extract_v__ · documents: ___ ok, ___ repaired, ___ failed (of ___ parsed)
+- Not finished? Why, and how many are left:
+- Most common failure reason, and what I did about it:
+- A record that was valid but wrong (document, field, what it said, what is true):
+- Cost at list price: Rs ___ in total, Rs ___ per document
+
+### One thing that went wrong today, and how I fixed it
