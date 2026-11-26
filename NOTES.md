@@ -1015,8 +1015,8 @@ Result: The answer did not match the dataset. The model supplied a local name wi
 
 ### D09 · Prompts and structured output
 
-- My best router prompt: classify_v__ with ___ / 20
-- What I changed in v4, and what happened to the score:
+- My best router prompt: classify_v4 with 20 / 20
+- What I changed in v4, and what happened to the score: I clarified that a specific past market price belongs to personal when the available documents do not contain it. The score remained 20/20 (100%).
 - The question my best version still gets wrong (line, wanted, got), and why I think so:
 - A label in my test set that I changed after seeing the results (or "none"):
 - Input tokens per question: v1 ___ , best version ___ . Is the extra accuracy worth it?
@@ -1036,3 +1036,17 @@ Result: The answer did not match the dataset. The model supplied a local name wi
 - Cost at list price: Rs ___ in total, Rs ___ per document
 
 ### One thing that went wrong today, and how I fixed it
+
+## Manual source checks - extract_v2
+
+Checked five extracted metadata records against their original local PDFs.
+
+| Document | Source evidence checked | Result |
+|---|---|---|
+| Tamil Nadu Marine Fishing Regulation Rules 2020 | Pages 1-2: title, 2020 date, Tamil Nadu, registration and licensing of fishing vessels | Accurate for fields checked |
+| PMMSY FAQ for Farmers | Pages 1-3: FAQ title, PMMSY scheme, financial assistance, beneficiaries | Accurate for fields checked |
+| Marine Fish Production in Tamil Nadu and Puducherry | Pages 2-3: Cuddalore cover caption, report title, Tamil Nadu and Puducherry, December 2011, CMFRI data | Accurate for fields checked |
+| PMMSY Operational Guidelines | Pages 1-3: title, Government of India, June 2020, funding and implementation topics | Accurate for fields checked |
+| Fisheries Management Options for Tamil Nadu and Puducherry | Pages 3-4: report title, regions, December 2011, FIMSUL and participating governments | Accurate for fields checked |
+
+No discrepancies were identified in the metadata fields checked for these five records.
