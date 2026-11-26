@@ -52,7 +52,13 @@ def write_table(rows: list[dict], total: int) -> None:
             f"| {row['version']} | {row['correct']}/{total} | {row['accuracy']:.0%} "
             f"| {row['invalid']} | {row['tokens_in']} |"
         )
-    table += ["", END]
+    table.append("")
+    for row in rows:
+        table.append(f"**{row['version']} confusion (actual -> predicted):**")
+        for (actual, predicted), count in sorted(row["confusion"].items()):
+            table.append(f"- {actual} -> {predicted}: {count}")
+        table.append("")
+    table.append(END)
     text = NOTES.read_text(encoding="utf-8") if NOTES.exists() else "# Notes\n"
     block = "\n".join(table)
     if START in text and END in text:
@@ -102,6 +108,10 @@ async def run(args: argparse.Namespace) -> int:
                     f"{version} missed line {miss['n']}: wanted {miss['label']}, "
                     f"got {miss['got']} (reply {miss['reply'][:40]!r}) {miss['question'][:60]!r}"
                 )
+            confusion = {}
+            for result in results:
+                pair = (result["label"], result["got"])
+                confusion[pair] = confusion.get(pair, 0) + 1
             rows.append(
                 {
                     "version": version,
@@ -109,6 +119,7 @@ async def run(args: argparse.Namespace) -> int:
                     "accuracy": accuracy(results),
                     "invalid": sum(r["got"] == "invalid" for r in results),
                     "tokens_in": round(sum(r["tokens_in"] for r in results) / len(results)),
+                    "confusion": confusion,
                 }
             )
     except LLMUnavailable as error:
@@ -123,6 +134,9 @@ async def run(args: argparse.Namespace) -> int:
     write_table(rows, len(examples))
     for row in rows:
         print(f"{row['version']:<14} {row['correct']:>2}/{len(examples)}  {row['accuracy']:.0%}")
+        print(f"  {row['version']} confusion:")
+        for (actual, predicted), count in sorted(row["confusion"].items()):
+            print(f"    {actual} -> {predicted}: {count}")
     print(f"model calls made now: {asked} (the rest came from the cache) -> table in NOTES.md")
     return 0
 

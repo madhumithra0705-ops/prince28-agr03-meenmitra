@@ -26,6 +26,8 @@ class FakeResult:
 
 class FakeGateway:
     async def generate(self, messages, **kwargs):
+        if kwargs.get("purpose") == "classify":
+            return FakeResult(text="docs")
         return FakeResult()
 
     async def stream(self, messages, **kwargs):

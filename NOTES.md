@@ -1004,6 +1004,29 @@ Result: The answer did not match the dataset. The model supplied a local name wi
 | classify_v3 | 20/20 | 100% | 0 | 392 |
 | classify_v4 | 20/20 | 100% | 0 | 404 |
 
+**classify_v1 confusion (actual -> predicted):**
+- docs -> docs: 7
+- docs -> off_topic: 1
+- off_topic -> docs: 3
+- off_topic -> off_topic: 2
+- personal -> off_topic: 3
+- personal -> personal: 4
+
+**classify_v2 confusion (actual -> predicted):**
+- docs -> docs: 8
+- off_topic -> off_topic: 5
+- personal -> personal: 7
+
+**classify_v3 confusion (actual -> predicted):**
+- docs -> docs: 8
+- off_topic -> off_topic: 5
+- personal -> personal: 7
+
+**classify_v4 confusion (actual -> predicted):**
+- docs -> docs: 8
+- off_topic -> off_topic: 5
+- personal -> personal: 7
+
 <!-- prompts:end -->
 
 ### D09 · Test-set label correction
@@ -1050,3 +1073,17 @@ Checked five extracted metadata records against their original local PDFs.
 | Fisheries Management Options for Tamil Nadu and Puducherry | Pages 3-4: report title, regions, December 2011, FIMSUL and participating governments | Accurate for fields checked |
 
 No discrepancies were identified in the metadata fields checked for these five records.
+
+## Provider-enforced schema test - extract_v3
+
+- Command: `uv run python scripts/extract_metadata.py --limit 20 --schema`
+- Documents processed: 20
+- Successful: 20
+- Repaired: 0
+- Failed: 0
+- Input tokens: 31,125
+- Output tokens: 2,865
+- Cost: Rs 1.5675
+- Duration: 202 seconds
+- Result: The provider accepted the JSON schema; no HTTP 400 error occurred.
+- Comparison limitation: The earlier extract_v2 full run completed 99 documents (6 repaired, 0 failed). A matching 20-document extract_v2 baseline is not recorded, so a direct comparison is unavailable.

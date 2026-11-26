@@ -8,6 +8,7 @@ marked as failed, with the reason, and a person looks at it.
 
 import asyncio
 import json
+import re
 from collections import Counter
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
@@ -86,7 +87,11 @@ async def extract(
         out.tokens_out += result.tokens_out
         out.cost_inr += result.cost_inr
         try:
-            out.record = schema.model_validate(parse_json(result.text))
+            record = schema.model_validate(parse_json(result.text))
+            year = getattr(record, "year", None)
+            if year is not None and not re.search(rf"(?<!\\d){re.escape(str(year))}(?!\\d)", text):
+                raise ValueError(f"year {year} is not in the document")
+            out.record = record
             return out
         except ValueError as error:  # bad JSON, or JSON that breaks the contract
             out.errors.append(explain(error))
