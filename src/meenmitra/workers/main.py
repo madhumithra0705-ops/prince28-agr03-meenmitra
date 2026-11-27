@@ -6,6 +6,7 @@ difference is where its work comes from: Redis instead of HTTP.
 
 import asyncio
 import logging
+import signal
 
 from arq.worker import Worker
 
@@ -26,6 +27,10 @@ logger = logging.getLogger("meenmitra.worker")
 
 async def startup(ctx: dict) -> None:
     settings: Settings = ctx["settings"]
+
+    logger.info("checking Redis connection")
+    await ctx["redis"].ping()
+    logger.info("Redis connection successful")
     if not ctx.get("embedded"):  # inside the API, logging is already set up
         setup_logging(settings.log_level)
         logging.getLogger("arq").handlers.clear()  # one log format: ours
@@ -56,8 +61,13 @@ async def startup(ctx: dict) -> None:
 
 
 async def shutdown(ctx: dict) -> None:
-    await ctx["http"].aclose()
-    await ctx["engine"].dispose()
+    http = ctx.get("http")
+    if http is not None:
+        await http.aclose()
+
+    engine = ctx.get("engine")
+    if engine is not None:
+        await engine.dispose()
 
 
 def worker_options(settings: Settings, *, embedded: bool = False) -> dict:
@@ -85,6 +95,9 @@ async def run_embedded(settings: Settings) -> None:
     except Exception:
         logger.exception("the embedded worker stopped: is REDIS_URL right?")
     finally:
+        if not hasattr(signal, "SIGUSR1"):
+            worker.handle_sig(signal.SIGTERM)
+            worker._handle_signals = True
         await worker.close()
 
 
