@@ -28,10 +28,17 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     async def lifespan(app: FastAPI):
         logger.info("starting", extra={"status": settings.app_env})
         worker = None
-        if settings.worker_in_api:  # no separate worker service here: run one in this process
-            from meenmitra.workers.main import run_embedded  # imported late: it reads .env
+        logger.info(
+            "worker configuration",
+            extra={"worker_in_api": settings.worker_in_api},
+        )
+
+        if settings.worker_in_api:
+            logger.info("starting embedded worker task")
+            from meenmitra.workers.main import run_embedded
 
             worker = asyncio.create_task(run_embedded(settings))
+            logger.info("embedded worker task created")
         yield
         if worker:
             worker.cancel()
