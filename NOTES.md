@@ -1052,12 +1052,11 @@ Result: The answer did not match the dataset. The model supplied a local name wi
 
 ### Extraction run
 
-- Prompt version: extract_v__ · documents: ___ ok, ___ repaired, ___ failed (of ___ parsed)
-- Not finished? Why, and how many are left:
-- Most common failure reason, and what I did about it:
-- A record that was valid but wrong (document, field, what it said, what is true):
-- Cost at list price: Rs ___ in total, Rs ___ per document
-
+- Prompt version: extract_v2 - documents: 99 ok, 6 repaired, 0 failed (of 99 parsed)
+- Not finished? Why, and how many are left: This run completed all 99 pending documents. Corpus-wide remaining count was not verified.
+- Most common failure reason, and what I did about it: No failures in this run.
+- A record that was valid but wrong (document, field, what it said, what is true): No discrepancy found in the five manually checked records; fields checked are listed below.
+- Cost at list price: Rs 7.9998 in total, Rs 0.0808 per document
 ### One thing that went wrong today, and how I fixed it
 
 ## Manual source checks - extract_v2
