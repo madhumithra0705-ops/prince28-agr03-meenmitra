@@ -93,7 +93,7 @@ async def test_a_document_is_ingested_once_however_often_its_job_runs(world):
     async with ctx["sessionmaker"]() as session:
         document = await session.scalar(select(Document))
         progress = await IngestRepository(session).progress(job_id)
-    assert document.metadata_["kind"] == "circular" and document.title == "Fee rules"
+    assert document.document_metadata["kind"] == "circular" and document.title == "Fee rules"
     assert progress["status"] == "finished" and progress["counts"]["done"] == 1
     assert progress["pages"] == 1 and progress["dead_letter"] == []
 
